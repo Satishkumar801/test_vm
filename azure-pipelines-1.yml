@@ -31,7 +31,18 @@ steps:
 #     workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
 #     environmentServiceNameAzureRM: 'First_service_connection'
 
-- task: tfsec@1
+# - task: tfsec@1
+#   inputs:
+#     version: 'v1.26.0'
+#     dir: '$(System.DefaultWorkingDirectory)/modules'
+
+- task: PowerShell@2
   inputs:
-    version: 'v1.26.0'
-    dir: '$(System.DefaultWorkingDirectory)/modules'
+    targetType: 'inline'
+    script: |
+      choco install tflint
+      tflint
+    workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+
+
+
