@@ -3,30 +3,35 @@ trigger: none
 pool: Default
 
 steps:
-- task: TerraformInstaller@1
-  inputs:
-    terraformVersion: 'latest'
+# - task: TerraformInstaller@1
+#   inputs:
+#     terraformVersion: 'latest'
 
-- task: TerraformTask@5
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
-    backendServiceArm: 'First_service_connection'
-    backendAzureRmStorageAccountName: 'satishstg111222'
-    backendAzureRmContainerName: 'newcontainer'
-    backendAzureRmKey: 'terraform.tfstate'
+# - task: TerraformTask@5
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'init'
+#     workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
+#     backendServiceArm: 'First_service_connection'
+#     backendAzureRmStorageAccountName: 'satishstg111222'
+#     backendAzureRmContainerName: 'newcontainer'
+#     backendAzureRmKey: 'terraform.tfstate'
 
-- task: TerraformTask@5
-  inputs:
-    provider: 'azurerm'
-    command: 'plan'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
-    environmentServiceNameAzureRM: 'First_service_connection'
+# - task: TerraformTask@5
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'plan'
+#     workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+#     environmentServiceNameAzureRM: 'First_service_connection'
 
-- task: TerraformTask@5
+# - task: TerraformTask@5
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'apply'
+#     workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+#     environmentServiceNameAzureRM: 'First_service_connection'
+
+- task: tfsec@1
   inputs:
-    provider: 'azurerm'
-    command: 'apply'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
-    environmentServiceNameAzureRM: 'First_service_connection'
+    version: 'v1.26.0'
+    dir: '$(System.DefaultWorkingDirectory)/modules'
