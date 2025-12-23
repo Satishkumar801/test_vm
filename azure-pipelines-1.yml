@@ -37,9 +37,14 @@ steps:
 #     dir: '$(System.DefaultWorkingDirectory)/modules'
 
 
-- task: CmdLine@2
+# - task: CmdLine@2
+#   inputs:
+#     script: 'tflint --recursive /f junit > tflint-out.xml'
+#     workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
+
+- task: PowerShell@2
   inputs:
-    script: 'tflint --recursive /f junit > tflint-out.xml'
-    workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
-
-
+    targetType: 'inline'
+    script: 'tflint'
+    errorActionPreference: 'continue'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
