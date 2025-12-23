@@ -40,6 +40,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'tflint --recursive /f junit > tflint-out.xml'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+    workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
 
 
