@@ -2,6 +2,8 @@ trigger: none
 
 pool: Default
 
+variables:
+  def_path: $(System.DefaultWorkingDirectory)/modules
 steps:
 - task: TerraformInstaller@1
   inputs:
@@ -11,7 +13,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
+    workingDirectory: '$(def_path)'
     backendServiceArm: 'First_service_connection'
     backendAzureRmStorageAccountName: 'satishstg111222'
     backendAzureRmContainerName: 'newcontainer'
@@ -21,30 +23,38 @@ steps:
 #   inputs:
 #     provider: 'azurerm'
 #     command: 'plan'
-#     workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+#     workingDirectory: '$(def_path)'
 #     environmentServiceNameAzureRM: 'First_service_connection'
 
 # - task: TerraformTask@5
 #   inputs:
 #     provider: 'azurerm'
 #     command: 'apply'
-#     workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+#     workingDirectory: '$(def_path)'
 #     environmentServiceNameAzureRM: 'First_service_connection'
 
 # - task: tfsec@1
 #   inputs:
 #     version: 'v1.26.0'
-#     dir: '$(System.DefaultWorkingDirectory)/modules'
+#     dir: '$(def_path)'
 
 
 # - task: CmdLine@2
 #   inputs:
 #     script: 'tflint --recursive /f junit > tflint-out.xml'
-#     workingDirectory: 'C:\Users\Satish shukla\Desktop\My_agent\_work\4\s\modules'
+#     workingDirectory: '$(def_path)'
 
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: 'tflint'
+#     errorActionPreference: 'continue'
+#     workingDirectory: '$(def_path)'
+  
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'tflint'
+    script: 'checkov -d.'
     errorActionPreference: 'continue'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/modules'
+    warningPreference: 'continue'
+    workingDirectory: '$(def_path)'
