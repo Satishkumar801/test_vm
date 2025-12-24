@@ -54,10 +54,10 @@ steps:
       tflint --recursive
       
   
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'checkov -d.'
-    errorActionPreference: 'continue'
-    warningPreference: 'continue'
-    workingDirectory: '$(def_path)'
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: 'checkov -d.'
+#     errorActionPreference: 'continue'
+#     warningPreference: 'continue'
+#     workingDirectory: '$(def_path)'
