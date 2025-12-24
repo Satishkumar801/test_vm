@@ -46,6 +46,7 @@ steps:
 #     workingDirectory: '$(def_path)'
 
 - task: PowerShell@2
+  displayName: tflint
   inputs:
     targetType: 'inline'
     script: |
