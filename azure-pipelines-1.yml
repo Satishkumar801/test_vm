@@ -49,10 +49,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd $(System.DefaultWorkingDirectory)/modules
+      cd '$(def_path)'
       tflint --init
       tflint --recursive
-    
+      
   
 - task: PowerShell@2
   inputs:
