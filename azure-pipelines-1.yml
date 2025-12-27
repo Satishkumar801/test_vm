@@ -2,8 +2,11 @@ trigger: none
 
 pool: Default
 
+
 variables:
   def_path: $(System.DefaultWorkingDirectory)/modules
+
+
 
 steps:
 - task: TerraformInstaller@1
